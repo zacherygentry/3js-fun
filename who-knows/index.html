@@ -25,7 +25,7 @@
     <!-- Need: Scene, Camera, Renderer to start displaying anything -->
     <script>
         const scene = new THREE.Scene();
-        // Camera attributes: (FOV (Degrees), Aspect Ratio(Usually want width / height), near clipping plane, far clipping plane)
+        // Camera attributes: (FieldOfView (Degrees), Aspect Ratio(Usually want width / height), near clipping plane, far clipping plane)
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
         // WebGLRenderer, set the width and height of area to fill app. For performance, go smaller like window.innerWidth / 2 to be half
@@ -33,6 +33,17 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         // Add renderer element to HTML doc, <canvas> element that is used to display the scene
         document.body.appendChild(renderer.domElement);
+            
+        // Creates a cube (contains all points (vertices), and fill (faces))
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        // Materials are used to color the geometry - MeshBasicMaterial
+        const material = new THREE.MeshBasicMaterial({ color: red });
+        // Mesh - object that takes geometry and applies a material to it
+        const cube = new THREE.MESH(geometry, material);
+        // Simply add the cube to the scene and move freely
+        scene.add(cube);
+        // The camera and cube will overlap, so it's important to move the camera out
+        camera.position.z = 5;
 
         
     </script>
