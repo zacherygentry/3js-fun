@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <title>Who Knows</title>
     <style>
         body {
@@ -30,22 +30,33 @@
         const renderer = new THREE.WebGLRenderer();
         // WebGLRenderer, set the width and height of area to fill app. For performance, go smaller like window.innerWidth / 2 to be half
         // Attributes: (width, height, updateStyle (false for lower resolution))
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(window.innerWidth/2, window.innerHeight/2);
         // Add renderer element to HTML doc, <canvas> element that is used to display the scene
         document.body.appendChild(renderer.domElement);
             
         // Creates a cube (contains all points (vertices), and fill (faces))
         const geometry = new THREE.BoxGeometry(1, 1, 1);
         // Materials are used to color the geometry - MeshBasicMaterial
-        const material = new THREE.MeshBasicMaterial({ color: red });
+        const material = new THREE.MeshBasicMaterial({ color: "purple" });
         // Mesh - object that takes geometry and applies a material to it
-        const cube = new THREE.MESH(geometry, material);
+        const cube = new THREE.Mesh(geometry, material);
         // Simply add the cube to the scene and move freely
         scene.add(cube);
         // The camera and cube will overlap, so it's important to move the camera out
-        camera.position.z = 5;
+        camera.position.z = 2;
 
-        
+        // Rendering the scene with a render or animate loop
+            // Causes the renderer to draw the scene every time on refresh
+            // requestAnimationFrame pauses when the user navigates to another tab
+        function animate() {
+            requestAnimationFrame(animate);
+            // add the ability to animate features(to move or change) before the rendering
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+
+        animate();
     </script>
 </body>
 
