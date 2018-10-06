@@ -28,8 +28,13 @@
         // Camera attributes: (FOV (Degrees), Aspect Ratio(Usually want width / height), near clipping plane, far clipping plane)
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
+        // WebGLRenderer, set the width and height of area to fill app. For performance, go smaller like window.innerWidth / 2 to be half
+        // Attributes: (width, height, updateStyle (false for lower resolution))
         renderer.setSize(window.innerWidth, window.innerHeight);
+        // Add renderer element to HTML doc, <canvas> element that is used to display the scene
         document.body.appendChild(renderer.domElement);
+
+        
     </script>
 </body>
 
